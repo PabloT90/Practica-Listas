@@ -24,6 +24,13 @@ public class Articulo {
 		orderLine = new OrderLine(code, quantity, order, product);
 	}
 
+	//Constructor con parámetros
+	public Articulo(Articulo previous, Articulo next, OrderLine orderLine){
+		this.previous = previous;
+		this.next = next;
+		this.orderLine = orderLine;
+	}
+
 	public OrderLine getOrderLine(){
 		return orderLine;
 	}

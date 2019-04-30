@@ -28,7 +28,7 @@ public class Order {
 	private List<OrderLine> orderLines;
 	
 	//SEGUNDA PARTE
-	private ListaArticulos linkedOrderLines;
+	private ListaArticulos linkedOrderLines = new ListaArticulos();
 	
 	public Integer getCode() {
 		return code;
@@ -125,26 +125,93 @@ public class Order {
 	}
 	
 	//SEGUNDA PARTE
+	/*
+	* Interfaz
+	* Nombre: addLinkedOrderLine
+	* Comentario: Esta función permite añadir una línea de pedido a
+	* la lista de artículos.
+	* Cabecera: public void addLinkedOrderLine(OrderLine orderLine)
+	* Entrada:
+	* 	-OrderLine orderLine
+	* Postcondiciones: La función añade una línea de pedido a la lista de artículos.
+	* */
 	public void addLinkedOrderLine(OrderLine orderLine) {
 		Articulo articulo = new Articulo(null, null, orderLine);
 		linkedOrderLines.add(articulo);
 	}
-	
-	public void removeLinkedOrderLine(OrderLine orderLine) {
-		//TODO Eliminar artículo
-		
+
+	/*
+	* Interfaz
+	* Nombre: removeLinkedOrderLine
+	* Comentario: Esta función permite eliminar una línea de pedido
+	* de la lista de articulos. La función devuelve -1 si no se ha
+	* encontrado el artículo a eliminar.
+	* Cabecera: public int removeLinkedOrderLine(OrderLine orderLine)
+	* Entrada:
+	* 	-OrderLine orderLine
+	* Salida:
+	* 	-entero validez
+	* Postcondiciones: La función devuelve un número entero asociado al
+	* nombre, 0 si se ha conseguido eliminar el artículo de la lista o
+	* -1 si el artículo no se encontraba en la lista.
+	* */
+	public int removeLinkedOrderLine(OrderLine orderLine) {
+		int validez;
+		Articulo articulo = new Articulo(null, null, orderLine);
+
+		validez = linkedOrderLines.remove(articulo);
+
+		return validez;
 	}
-	
+
+	/*
+	* Interfaz
+	* Nombre: getLinkedOrderLine
+	* Comentario: Esta función permite obtener una línea de pedido de
+	* la lista de artículos.
+	* Cabecera: public OrderLine getLinkedOrderLine(int position)
+	* Entrada:
+	* 	-entero position
+	* Salida:
+	* 	-OrderLine orderLine
+	* Postcondiciones: La función devuelve un tipo OrderLine asociado al
+	* nombre, según la posición indicada o null si position sobrepasa el rango
+	* permitido. El rango permitido es de la posición 0 hasta el número de
+	* articulos almacenados.
+	* */
 	public OrderLine getLinkedOrderLine(int position) {
-		//TODO Coger artículo
-		
-		return null;
+		OrderLine orderLine = null;
+		Articulo articulo;
+
+		articulo = linkedOrderLines.get(position);
+		if(articulo != null){
+			orderLine = articulo.getOrderLine();//Pablo cambia el nombre de getOrderLine
+		}
+
+		return orderLine;
 	}
-	
+
+	/*
+	* Interfaz
+	* Nombre: getLastOrderLine
+	* Comentario: Esta función permite obtener la última
+	* línea de pedido de la lista de artículos.
+	* Cabecera: public OrderLine getLastOrderLine()
+	* Salida:
+	* 	-OrderLine orderLine
+	* Postcondiciones: La función devuelve un tipo OrderLine asociado al
+	* nombre, que es la última línea de pedido de la lista o null si la
+	* lista se encuentra vacía.
+	* */
 	public OrderLine getLastOrderLine() {
-		//TODO Coger último artículo
-		
-		return null;
+		Articulo articulo = linkedOrderLines.get(linkedOrderLines.numeroDeArticulos()-1);
+		OrderLine orderLine = null;
+
+		if(articulo != null){
+			orderLine = articulo.getOrderLine();
+		}
+
+		return orderLine;
 	}
 	
 	//TERCERA PARTE

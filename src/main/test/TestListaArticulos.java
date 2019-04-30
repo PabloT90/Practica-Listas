@@ -5,7 +5,7 @@ import main.java.util.ListaArticulos;
 
 public class TestListaArticulos {
     public static void main (String[] args){
-        Articulo articulo1 = new Articulo(null, null, 1);
+       /* Articulo articulo1 = new Articulo(null, null, 1);
         Articulo articulo2 = new Articulo(null, null, 2);
         Articulo articulo3 = new Articulo(null, null, 3);
         Articulo articulo4 = new Articulo(null, null, 4);
@@ -60,6 +60,6 @@ public class TestListaArticulos {
         System.out.println(lista.get(2).getId());
         System.out.println(lista.get(3).getId());
         System.out.println(lista.get(4).getId());
-        System.out.println(lista.get(5));
+        System.out.println(lista.get(5));*/
     }
 }

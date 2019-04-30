@@ -16,9 +16,12 @@ public class TestOrder {
         Product p4 = new Product(CodeUtils.getProductCode(), "Pizza 4 quesos", 2.20, s1);
 
         Order o1 = new Order(CodeUtils.getOrderCode(), "Juan Uno", s1);
+        Order o2 = new Order(CodeUtils.getOrderCode(), "Juan Dos", s1);
+        Order o3 = new Order(CodeUtils.getOrderCode(), "Juan Tres", s1);
 
         OrderLine ol1 = new OrderLine(CodeUtils.getOrderLineCode(), 2, o1, p2);
         OrderLine ol2 = new OrderLine(CodeUtils.getOrderLineCode(), 1, o1, p4);
+        OrderLine ol3 = new OrderLine(CodeUtils.getOrderLineCode(), 3, o1, p4);
 
         //addOrderLine
         o1.addOrderLine(ol1);
@@ -34,5 +37,35 @@ public class TestOrder {
         System.out.println(o1.getOrderLine(0));
         //System.out.println(s1.getProduct(1));//Lanza IndexOutBoundException porque position marca
         //una posición fuera del rango permitido.
+
+        //Segunda parte
+        System.out.println("Segunda parte:");
+
+        //addLinkedOrderLine
+        o1.addLinkedOrderLine(ol1);
+        o1.addLinkedOrderLine(ol2);
+        o2.addLinkedOrderLine(ol2);
+        o3.addLinkedOrderLine(ol1);
+
+        //getLinkedOrderLine
+        System.out.println(o1.getLinkedOrderLine(0));
+        System.out.println(o1.getLinkedOrderLine(1));
+        System.out.println(o1.getLinkedOrderLine(2));
+        System.out.println(o2.getLinkedOrderLine(0));
+        System.out.println(o2.getLinkedOrderLine(1));
+        System.out.println(o3.getLinkedOrderLine(0));
+        System.out.println(o3.getLinkedOrderLine(1));
+
+        //getLastOrderLine
+        System.out.println("getLastOrderLine:");
+        System.out.println(o1.getLastOrderLine());
+
+        //removeLinkedOrderLine
+        System.out.println("removeLinkedOrderLine:");
+        System.out.println(o1.removeLinkedOrderLine(ol1));
+        System.out.println(o1.removeLinkedOrderLine(ol3));
+
+        System.out.println(o1.getLinkedOrderLine(0));
+        System.out.println(o1.getLinkedOrderLine(1));
     }
 }

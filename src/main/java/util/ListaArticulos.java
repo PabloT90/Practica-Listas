@@ -95,15 +95,19 @@ public class ListaArticulos {
 
 		if(cabeza != null){
 			puntero = cabeza;
-			while (puntero.getId() != articulo.getId() && puntero.getNext() != null){//Buscamos el artículo
+			while (puntero.getCode() != articulo.getCode() && puntero.getNext() != null){//Buscamos el artículo
 				puntero = puntero.getNext();
 			}
-			if(puntero.getId() == articulo.getId()){
+			if(puntero.getCode() == articulo.getCode()){
 				validez = 0;
 				aux1 = puntero.getPrevious();//Conectamos el articulo anterior con el proximo articulo del puntero
 				aux2 = puntero.getNext();
-				aux1.setNext(aux2);
-				aux2.setPrevious(aux1);
+				if(aux1 != null){
+					aux1.setNext(aux2);
+				}
+				if(aux2 != null){
+					aux2.setPrevious(aux1);
+				}
 			}
 		}
 
