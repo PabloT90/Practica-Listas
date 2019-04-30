@@ -86,7 +86,7 @@ public class ListaArticulos {
 	* Salida:
 	* 	-entero validez
 	* Postcondiciones: La función devuelve un número entero asociado al nombre,
-	* 0 si se ha conseguido eliminar correctamente el artículo de la lista o -1
+ 	* 0 si se ha conseguido eliminar correctamente el artículo de la lista o -1
 	* si el artículo no se encontraba en la lista.
 	* */
 	public int remove(Articulo articulo) {
@@ -95,10 +95,12 @@ public class ListaArticulos {
 
 		if(cabeza != null){
 			puntero = cabeza;
-			while (puntero.getCode() != articulo.getCode() && puntero.getNext() != null){//Buscamos el artículo
+			//puntero.getCode() != articulo.getCode() && puntero.getNext() != null
+			while (!puntero.getCode().equals(articulo.getCode()) && puntero.getNext() != null){//Buscamos el artículo
 				puntero = puntero.getNext();
 			}
-			if(puntero.getCode() == articulo.getCode()){
+			//puntero.getCode() == articulo.getCode()
+			if(puntero.getCode().equals(articulo.getCode())){
 				validez = 0;
 				aux1 = puntero.getPrevious();//Conectamos el articulo anterior con el proximo articulo del puntero
 				aux2 = puntero.getNext();
