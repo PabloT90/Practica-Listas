@@ -93,7 +93,7 @@ public class ListaArticulos {
 		int validez = -1;
 		Articulo puntero = null, aux1 = null, aux2 = null;
 
-		if(cabeza != null){
+		if(cabeza != null){//Si la lista se encuentra vacía
 			puntero = cabeza;
 			//puntero.getCode() != articulo.getCode() && puntero.getNext() != null
 			while (!puntero.getCode().equals(articulo.getCode()) && puntero.getNext() != null){//Buscamos el artículo
@@ -106,6 +106,8 @@ public class ListaArticulos {
 				aux2 = puntero.getNext();
 				if(aux1 != null){
 					aux1.setNext(aux2);
+				}else{
+					cabeza = aux2;
 				}
 				if(aux2 != null){
 					aux2.setPrevious(aux1);
