@@ -322,11 +322,14 @@ public class Supermarket {
 	public double getAvgPriceProduct() {
 		double media = 0.0, suma = 0.0;
 
-		for(int i = 0; i < products.size(); i++){
-			suma += products.get(i).getPrice();
+		if(!products.isEmpty()){
+			for(int i = 0; i < products.size(); i++){
+				suma += products.get(i).getPrice();
+			}
+
+			media = suma / products.size();
 		}
 
-		media = suma / products.size();
 
 		return media;
 	}
@@ -360,17 +363,40 @@ public class Supermarket {
 	/*
 	* Interfaz
 	* Nombre: getBestSellingProduct
-	* Comentario: Esta función nos permite obtener el producto más vendido
-	* Cabecera:
+	* Comentario: Esta función nos permite obtener el producto más vendido.
+	* Salida: String masVendido
+	* Postcondiciones: Asociado al nombre se manda un String que contiene el producto mas vendido y su numero de ventas.
+	* Cabecera: public String getBestSellingProduct()
 	* */
-	public void getBestSellingProduct() {
-		//TODO Devolver el producto más vendido junto con el número de ventas
-		
+	public String getBestSellingProduct() {
+		String masVendido = " ", puntadelnabo = "";
+		int ventas = 0;
+		if(!products.isEmpty()){
+			int mayor = products.get(0).getCode();
+			for(int i = 0; i < products.size(); i++){
+				if(vecesVendido(mayor,products) < (ventas =vecesVendido(products.get(i).getCode(), products))){
+					puntadelnabo = "Producto: "+products.get(i).toString();
+					mayor = products.get(i).getCode();
+				}
+			}
+			masVendido = puntadelnabo + " Ventas: " + ventas;
+		}
+		return masVendido;
 	}
-	
+
+	public int vecesVendido(int num ,List<Product> lista) {
+		int contador = 0;
+		for(int i = 0; i < lista.size(); i++){
+			if(num == lista.get(i).getCode()){
+				contador++;
+			}
+		}
+		return contador;
+	}
+
 	public void getWorstSellingProduct() {
 		//TODO Devolver el producto más vendido junto con el número de ventas
-		
+
 	}
 	
 }

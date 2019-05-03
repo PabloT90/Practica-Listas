@@ -9,8 +9,9 @@ import java.util.List;
 
 public class CodeUtils {
 	
-	private static final String fileName = "./src/resources/counter.txt";
-	
+	//private static final String fileName = "./src/resources/counter.txt";
+	private static final String fileName = "Practica-Listas\\src\\resources\\counter.txt";
+
 	public static Integer getSupermarketCode() {
 		
 		Path directory = Paths.get(fileName);
@@ -19,13 +20,13 @@ public class CodeUtils {
 		try {
 			List<String> codes = Files.readAllLines(directory);
 
-			if(!codes.isEmpty()){//Si el fichero counter.txt no se encuentra vacío
+			//if(!codes.isEmpty()){//Si el fichero counter.txt no se encuentra vacío
 				supermarketCode = Integer.valueOf(codes.get(0))+1;
 				codes.set(0, supermarketCode.toString());
-			}else{
+			/*}else{
 				supermarketCode += 1;
 				codes.add(0, supermarketCode.toString());
-			}
+			}*/
 			
 			Files.write(directory, codes, StandardCharsets.UTF_8);
 			
@@ -46,13 +47,13 @@ public class CodeUtils {
 		try {
 			List<String> codes = Files.readAllLines(directory);
 
-			if(!codes.isEmpty() && codes.size() > 1){//Si el fichero counter.txt no se encuentra vacío y cuenta con más de un registro
+			//if(!codes.isEmpty() && codes.size() > 1){//Si el fichero counter.txt no se encuentra vacío y cuenta con más de un registro
 				productCode = Integer.valueOf(codes.get(1))+1;
 				codes.set(1, productCode.toString());
-			}else{
+			/*}else{
 				productCode += 1;
 				codes.add(1, productCode.toString());
-			}
+			}*/
 			
 			Files.write(directory, codes, StandardCharsets.UTF_8);
 			
@@ -73,13 +74,13 @@ public class CodeUtils {
 		try {
 			List<String> codes = Files.readAllLines(directory);
 
-			if(codes.size() > 2){
+			//if(codes.size() > 2){
 				orderCode = Integer.valueOf(codes.get(2))+1;
 				codes.set(2, orderCode.toString());
-			}else{
+			/*}else{
 				orderCode+=1;
 				codes.add(2, orderCode.toString());
-			}
+			}*/
 			
 			Files.write(directory, codes, StandardCharsets.UTF_8);
 			
@@ -100,13 +101,13 @@ public class CodeUtils {
 		try {
 			List<String> codes = Files.readAllLines(directory);
 
-			if(codes.size() > 3){
+			//if(codes.size() > 3){
 				orderLineCode = Integer.valueOf(codes.get(3))+1;
 				codes.set(3, orderLineCode.toString());
-			}else{
+			/*}else{
 				orderLineCode += 1;
 				codes.add(3, orderLineCode.toString());
-			}
+			}*/
 			
 			Files.write(directory, codes, StandardCharsets.UTF_8);
 			
