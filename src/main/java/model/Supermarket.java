@@ -1,8 +1,6 @@
 package main.java.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Supermarket {
 
@@ -16,6 +14,7 @@ public class Supermarket {
 		this.code = code;
 		this.products = new ArrayList<Product>();
 		this.orders = new ArrayList<Order>();
+		this.orderDeque = new LinkedList<Order>();
 	}
 	
 	private String name;
@@ -25,7 +24,7 @@ public class Supermarket {
 	private List<Order> orders;
 	
 	//TERCERA PARTE
-	private Queue<Order> orderQueue;
+	private Deque<Order> orderDeque;
 
 	public String getName() {
 		return name;
@@ -59,12 +58,12 @@ public class Supermarket {
 		this.orders = orders;
 	}
 	
-	public Queue<Order> getOrderQueue() {
-		return orderQueue;
+	public Deque<Order> getOrderDeque() {
+		return orderDeque;
 	}
 
-	public void setOrderQueue(Queue<Order> orderQueue) {
-		this.orderQueue = orderQueue;
+	public void setOrderDeque(Deque<Order> orderDeque) {
+		this.orderDeque = orderDeque;
 	}
 
 	public String toString() {
@@ -194,44 +193,176 @@ public class Supermarket {
 	
 	//TERCERA PARTE
 	//Cola de pedidos
+	/*
+	* Interfaz
+	* Nombre: pushOrder
+	* Comentario: Esta función permite colocar un pedido al principio
+	* de la cola de pedidos.
+	* Cabecera: public void pushOrder(Order order)
+	* Entrada:
+	* 	-Order order
+	* Postcondiciones: La función inserta un nuevo pedido al principio
+	* de la cola de pedidos.
+	* Lanza
+	* */
 	public void pushOrder(Order order) {
-		//TODO Añadir pedido
-		
+		orderDeque.push(order);
 	}
-	
+
+	/*
+	* Interfaz
+	* Nombre: popOrder
+	* Comentario: Esta función permite obtener el primer pedido de la
+	* cola de pedidos. Esta función elimina el pedido obtenido de la cola.
+	* Cabecera: public Order popOrder()
+	* Salida:
+	* 	-Order order
+	* Postcondiciones: La función devuelve un tipo Order asociado al nombre,
+	* que es el primer pedido de la cola o null si la cola se encuentra vacía.
+	* */
 	public Order popOrder() {
-		//TODO Obtener pedido
-		
-		return null;
+		Order order = null;
+
+		if(!orderDeque.isEmpty()){//Si la lista no se encuentra vacía
+			order = orderDeque.pop();
+		}
+
+		return order;
 	}
-	
+
+	/*
+	* Interfaz
+	* Nombre: getFront
+	* Comentario: La función nos permite obtener el primer pedido
+	* de la cola, sin eliminarlo de esta.
+	* Cabecera: public Order getFront()
+	* Salida:
+	* 	-Order order
+	* Postcondiciones: La función devuelve un tipo Order asociado al nombre,
+	* que es el primer pedido de la cola o null si la cola se encuentra vacía.
+	* */
 	public Order getFront() {
-		//TODO Devuelve el primer pedido de la cola
-		//OJO!! No hay que sacarlo, solo devolver el primer pedido
-		
-		return null;
+		Order order = null;
+
+		if(!orderDeque.isEmpty()){//Si la lista no se encuentra vacía
+			order = orderDeque.getFirst();
+		}
+
+		return order;
 	}
 	
 	//Operaciones
-	public void getMinPriceProduct() {
-		//TODO Devolver el producto con el precio más bajo
-		
+	/*
+	* Interfaz
+	* Nombre: getMinPriceProduct
+	* Comentario: Esta función devuelve el producto con el
+	* precio más bajo de la lista de productos, si existe más de un producto
+	* con el mismo precio la función devuelve el primero encontrado.
+	* Cabecera: public Product getMinPriceProduct()
+	* Entrada:
+	* 	-Product producto
+	* Postcondiciones: La función devuelve un tipo Product asociado al
+	* nombre, que es el producto con el precio más bajo de la lista de
+	* productos o null si la lista se encuentra vacía.
+	* */
+	public Product getMinPriceProduct() {
+		Product producto = null;
+
+		if(!products.isEmpty()){//Si la lista de productos no se encuentra vacía
+			producto = products.get(0);
+			for(int i = 1; i < products.size(); i++){
+				if(products.get(i).getPrice() < producto.getPrice()){
+					producto = products.get(i);
+				}
+			}
+		}
+
+		return producto;
 	}
-	
-	public void getMaxPriceProduct() {
-		//TODO Devolver el producto con el precio más alto
-		
+
+	/*
+	* Interfaz
+	* Nombre: getMaxPriceProduct
+	* Comentario: Esta función nos permite obtener el producto
+	* con mayor precio de la lista de productos, si existe más de un producto
+	* con el mismo precio la función devuelve el primero encontrado.
+	* Cabecera: public Product getMaxPriceProduct()
+	* Salida:
+	* 	-Product producto
+	* Postcondiciones: La función devuelve un tipo Product asociado al
+	* nombre, que es el producto con el precio más alto de la lista de
+	* productos o null si la lista se encuentra vacía.
+	* */
+	public Product getMaxPriceProduct() {
+		Product producto = null;
+
+		if(!products.isEmpty()){//Si la lista de productos no se encuentra vacía
+			producto = products.get(0);
+			for(int i = 1; i < products.size(); i++){
+				if(products.get(i).getPrice() > producto.getPrice()){
+					producto = products.get(i);
+				}
+			}
+		}
+
+		return producto;
 	}
-	
-	public void getAvgPriceProduct() {
-		//TODO Devolver la media de precios de los productos
-		
+
+	/*
+	* Interfaz
+	* Nombre: getAvgPriceProduct
+	* Comentario: Esta función nos permite obtener la media de los
+	* productos de la lista de productos.
+	* Cabecera: public double getAvgPriceProduct()
+	* Salida:
+	* 	-real media
+	* Postcondiciones: La función devuelve un número real asociado al
+	* nombre, que es la media de los productos de la lista.
+	* */
+	public double getAvgPriceProduct() {
+		double media = 0.0, suma = 0.0;
+
+		for(int i = 0; i < products.size(); i++){
+			suma += products.get(i).getPrice();
+		}
+
+		media = suma / products.size();
+
+		return media;
 	}
-	
-	public void getPriceByCode(Integer productCode) {
-		//TODO Delvover el precio del producto
+
+	/*
+	* Interfaz
+	* Nombre: getPriceByCode
+	* Comentario: La función devuelve el precio de un producto de
+	* la lista de productos.
+	* Cabecera: public double getPriceByCode(Integer productCode)
+	* Entrada:
+	* 	-Integer productCode
+	* Salida:
+	* 	-real precio
+	* Postcondiciones: La función devuelve un número real asociado al
+	* nombre, que es el precio del producto o -1.0 si no se ha encontrado el
+	* producto en la lista.
+	* */
+	public double getPriceByCode(Integer productCode) {
+		double precio = -1.0;
+
+		for(int i = 0; i < products.size() && precio == -1; i++){
+			if(products.get(i).getCode() == productCode){
+				precio = products.get(i).getPrice();
+			}
+		}
+
+		return precio;
 	}
-	
+
+	/*
+	* Interfaz
+	* Nombre: getBestSellingProduct
+	* Comentario: Esta función nos permite obtener el producto más vendido
+	* Cabecera:
+	* */
 	public void getBestSellingProduct() {
 		//TODO Devolver el producto más vendido junto con el número de ventas
 		
