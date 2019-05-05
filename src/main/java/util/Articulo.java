@@ -57,31 +57,31 @@ public class Articulo {
 		return orderLine.getCode();
 	}
 
-	public void setCode(Integer code) {
+	public void setOrderLineCode(Integer code) {
 		orderLine.setCode(code);
 	}
 
-	public Integer getQuantity() {
+	public Integer getOrderLineQuantity() {
 		return orderLine.getQuantity();
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setOrderLineQuantity(Integer quantity) {
 		orderLine.setQuantity(quantity);
 	}
 
-	public Order getOrder() {
+	public Order getOrderLineOrder() {
 		return orderLine.getOrder();
 	}
 
-	public void setOrder(Order order) {
+	public void setOrderLineOrder(Order order) {
 		orderLine.setOrder(order);
 	}
 
-	public Product getProduct() {
+	public Product getOrderLineProduct() {
 		return orderLine.getProduct();
 	}
 
-	public void setProduct(Product product) {
+	public void setOrderLineProduct(Product product) {
 		orderLine.setProduct(product);
 	}
 }

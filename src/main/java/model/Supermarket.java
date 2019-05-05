@@ -330,7 +330,6 @@ public class Supermarket {
 			media = suma / products.size();
 		}
 
-
 		return media;
 	}
 
@@ -366,37 +365,70 @@ public class Supermarket {
 	* Comentario: Esta función nos permite obtener el producto más vendido.
 	* Salida: String masVendido
 	* Postcondiciones: Asociado al nombre se manda un String que contiene el producto mas vendido y su numero de ventas.
+	* Si varios productos tienen el mismo numero de ventas se mostrará el último obtenido.
 	* Cabecera: public String getBestSellingProduct()
 	* */
 	public String getBestSellingProduct() {
-		String masVendido = " ", puntadelnabo = "";
+		String masVendido = " ";
 		int ventas = 0;
+
 		if(!products.isEmpty()){
 			int mayor = products.get(0).getCode();
-			for(int i = 0; i < products.size(); i++){
-				if(vecesVendido(mayor,products) < (ventas =vecesVendido(products.get(i).getCode(), products))){
-					puntadelnabo = "Producto: "+products.get(i).toString();
+			for(int i = 1; i < products.size(); i++){
+				if(vecesVendido(mayor, products) <= (ventas =vecesVendido(products.get(i).getCode(), products))){ //Si el mayor anterior es menor que el siguiente que comprobamos, se cambia
+					masVendido = "Producto: "+ products.get(i).getCode();
 					mayor = products.get(i).getCode();
 				}
 			}
-			masVendido = puntadelnabo + " Ventas: " + ventas;
+			masVendido = masVendido + " Ventas: " + ventas;
 		}
 		return masVendido;
 	}
 
+	/*
+	* Comentario: Cuenta las veces que se ha vendido un producto.
+	* Entrada: int num, List<Product> lista
+	* Salida: int veces.
+	* Precondiciones:
+	* 	- La lista no puede estar vacía.
+	* 	- El numero debe ser mayor a 0.
+	* Postcondiciones: Asociado al nombre devuelve las veces que se ha vendido un producto.
+	* Cabecera: public int vecesVendido(int num ,List<Product> lista)
+	* */
 	public int vecesVendido(int num ,List<Product> lista) {
-		int contador = 0;
+		int veces = 0;
 		for(int i = 0; i < lista.size(); i++){
 			if(num == lista.get(i).getCode()){
-				contador++;
+				veces++;
 			}
 		}
-		return contador;
+		return veces;
 	}
 
-	public void getWorstSellingProduct() {
-		//TODO Devolver el producto más vendido junto con el número de ventas
+	/*
+	 * Interfaz
+	 * Nombre: getWorstSellingProduct
+	 * Comentario: Esta función nos permite obtener el producto menos vendido.
+	 * Salida: String masVendido
+	 * Postcondiciones: Asociado al nombre se manda un String que contiene el producto menos vendido y su numero de ventas.
+	 * Si varios productos tienen el mismo numero de ventas se mostrará el último obtenido.
+	 * Cabecera: public String getWorstSellingProduct()
+	 * */
+	public String getWorstSellingProduct() {
+		String menosVendido = " ";
+		int ventas = 0;
 
+		if(!products.isEmpty()){
+			int mayor = products.get(0).getCode();
+			for(int i = 1; i < products.size(); i++){
+				if(vecesVendido(mayor, products) >= (ventas =vecesVendido(products.get(i).getCode(), products))){
+					menosVendido = "Producto: "+ products.get(i).getCode();
+					mayor = products.get(i).getCode();
+				}
+			}
+			menosVendido = menosVendido + " Ventas: " + ventas;
+		}
+		return menosVendido;
 	}
 	
 }

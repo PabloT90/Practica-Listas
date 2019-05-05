@@ -1,7 +1,6 @@
 package main.java.util;
 
 public class ListaArticulos {
-
 	private Articulo cabeza = null;
 
 	/*
@@ -95,11 +94,10 @@ public class ListaArticulos {
 
 		if(cabeza != null){//Si la lista se encuentra vacía
 			puntero = cabeza;
-			//puntero.getCode() != articulo.getCode() && puntero.getNext() != null
 			while (!puntero.getCode().equals(articulo.getCode()) && puntero.getNext() != null){//Buscamos el artículo
 				puntero = puntero.getNext();
 			}
-			//puntero.getCode() == articulo.getCode()
+
 			if(puntero.getCode().equals(articulo.getCode())){
 				validez = 0;
 				aux1 = puntero.getPrevious();//Conectamos el articulo anterior con el proximo articulo del puntero

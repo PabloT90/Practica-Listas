@@ -93,5 +93,10 @@ public class TestSupermarket {
         System.out.println("--Fin getPriceByCode()--");
 
         System.out.println(s1.getBestSellingProduct());
+        System.out.println("--Fin getBestSellingProduct()--");
+
+        System.out.println(s1.getWorstSellingProduct());
+        System.out.println("--Fin getBestSellingProduct()--");
+
     }
 }
