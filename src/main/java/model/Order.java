@@ -2,7 +2,6 @@ package main.java.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import main.java.util.Articulo;
 import main.java.util.ListaArticulos;
 
@@ -215,10 +214,20 @@ public class Order {
 	}
 	
 	//TERCERA PARTE
+	/*
+	* Nos permite calcular el precio total del pedido.
+	* Precondiciones: el pedido no puede estar vacío.
+	* Salida: precioTotal double.
+	* Postcondiciones: Asociado al nombre se manda el precio total del pedido.
+	* */
 	public Double getTotalPrice() {
-		//TODO Calcular el total del pedido
-		
-		return 0.0;
+		double precioTotal = 0.0;
+
+		for(int i = 0; i < orderLines.size(); i++) {
+			precioTotal = precioTotal + orderLines.get(i).getProduct().getPrice();
+		}
+
+		return precioTotal;
 	}
 
 }

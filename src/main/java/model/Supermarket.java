@@ -362,7 +362,7 @@ public class Supermarket {
 	/*
 	* Interfaz
 	* Nombre: getBestSellingProduct
-	* Comentario: Esta función nos permite obtener el producto más vendido.
+	* Comentario: Esta función nos permite obtener el producto más vendido junto a sus ventas.
 	* Salida: String masVendido
 	* Postcondiciones: Asociado al nombre se manda un String que contiene el producto mas vendido y su numero de ventas.
 	* Si varios productos tienen el mismo numero de ventas se mostrará el último obtenido.
@@ -408,7 +408,7 @@ public class Supermarket {
 	/*
 	 * Interfaz
 	 * Nombre: getWorstSellingProduct
-	 * Comentario: Esta función nos permite obtener el producto menos vendido.
+	 * Comentario: Esta función nos permite obtener el producto menos vendido junto con sus ventas.
 	 * Salida: String masVendido
 	 * Postcondiciones: Asociado al nombre se manda un String que contiene el producto menos vendido y su numero de ventas.
 	 * Si varios productos tienen el mismo numero de ventas se mostrará el último obtenido.

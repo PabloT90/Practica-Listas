@@ -10,9 +10,9 @@ public class TestOrder {
     public static void main (String[] args){
         Supermarket s1 = new Supermarket("Supermercado Nervión", CodeUtils.getSupermarketCode());
 
-        Product p1 = new Product(CodeUtils.getProductCode(), "Champú 5L Familiar", 25.00, s1);
+        //Product p1 = new Product(CodeUtils.getProductCode(), "Champú 5L Familiar", 25.00, s1);
         Product p2 = new Product(CodeUtils.getProductCode(), "Cerveza Alhambra 1925", 1.00, s1);
-        Product p3 = new Product(CodeUtils.getProductCode(), "Aceitunas chupadeos", 5.00, s1);
+        //Product p3 = new Product(CodeUtils.getProductCode(), "Aceitunas chupadeos", 5.00, s1);
         Product p4 = new Product(CodeUtils.getProductCode(), "Pizza 4 quesos", 2.20, s1);
 
         Order o1 = new Order(CodeUtils.getOrderCode(), "Juan Uno", s1);
@@ -67,5 +67,9 @@ public class TestOrder {
 
         System.out.println(o1.getLinkedOrderLine(0));
         System.out.println(o1.getLinkedOrderLine(1));
+
+        System.out.println("Precio total: "+ o1.getTotalPrice());
+        System.out.println("Precio total: "+ o2.getTotalPrice());
+        System.out.println("Precio total: "+ o3.getTotalPrice());
     }
 }
