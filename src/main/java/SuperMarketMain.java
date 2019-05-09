@@ -1,9 +1,15 @@
 package main.java;
 
+import main.java.model.OrderLine;
+import main.java.model.Product;
 import main.java.model.Supermarket;
+import main.java.util.GestoraMain;
 import main.java.util.Validaciones;
 
+import java.util.List;
+
 /*
+Descripcion: este programa simula
 * Entradas:
 *   - int opcion //para controlar la opcion del menu que se muestra en pantalla.
 *   - char ejecutar //para controlar si se ejecutar la aplicacion o no.
@@ -26,61 +32,114 @@ import main.java.util.Validaciones;
 *   si quiere ejecutar
 *   mientras quiera ejecutar
 *       LeerUsuario
+        MostrarUsuario
 *       repetir
-*           Mostrar menu, LeerValidarOpcionMenu
+            AumentarNumeroPedido
+*           Mostrar menu, LeerValidarOpcionMenu*
 *           segun opcionMenu
 *               opcion 1
-*                   Añadir productos por codigo
+*                   AñadirProductosPorCodigo
 *               opcion 2
-*                   añadir productos por nombre
+*                   añadirProductosPorNombre
 *               opcion 3
-*                   listaProductos
+*                   listaProductos*
 *               opcion 4
-*                   productoMasBarato
+*                   productoMasBarato*
 *               opcion 5
-*                   productoMasCaro
+*                   productoMasCaro*
 *               opcion 6
-*                   precioMedioProductos
+*                   precioMedioProductos*
 *               opcion 7
-*                   productoMasVendido
+*                   productoMasVendido*
 *               opcion 8
-*                   productoMenosVendido
-*               opcion 9
-*                   TerminarPedido
+*                   productoMenosVendido*
 *               fin_segun
 *       mientras no cambie de usuario
 *       LeerValidarEjecutar
 *   fin_mientras
 *   fin_si
 * FIN
+
+PG 1
+AñadirProductosPorCodigo
+INICIO
+    LeerValidarCodigo*
+    si existe el producto
+        LeerValidarCantidad*
+        AddProduct*
+    sino
+        MostrarMensajeExplicatorio1
+    fin_si
+FIN
+
+PG 1
+AñadirProductoPorNombre
+INICIO
+    LeerNombre*
+    si existe el producto
+        LeerValidarCantidad*
+        AddProduct*
+    sino
+        MostrarMensajeExplicatorio1
+    fin_si
+FIN
 * */
 public class SuperMarketMain {
     public static void main(String[]args){
         char ejecutar;
-        String usuario;
-        int opcion;
+        String usuario, nombreProd;
+        int opcion, codigo, cantidad, codigoPedido = 0;
         Supermarket supermercado = new Supermarket();
+        GestoraMain gm = new GestoraMain();
+        List<Product> products = null;
+        List<OrderLine> orderLines = null;
+
+        //Queda añadir los productos y las orderLine.
+        //Ademas falta arreglar las funciones de mas y menos vendido, que lo habiamos entendido mal.
 
         if((ejecutar = Validaciones.leerValidarEjecutar()) == 'S') {//si quiere ejecutar
             while(ejecutar == 'S') {//mientras quiera ejecutar
                 //LeerUsuario
                 usuario = Validaciones.leerUsuario();
+                //MostrarUsuario
                 System.out.println("Hola: " + usuario);
                 do {//repetir
+                    //AumentarCodigoPedido
+                    codigoPedido++;
                     //Mostrar menu, LeerValidarOpcionMenu
                     opcion = Validaciones.OpcionesMenus();
                     switch(opcion) {//segun opcionMenu
                         case 1://opcion 1
-                            //Añadir productos por codigo
-                            System.out.println("En construccion");
+                            //AñadirProductosPorCodigo
+                            //LeerValidarCodigo*
+                            codigo = Validaciones.LeerValidarCodigo();
+                            if(gm.buscarProducto(codigo, products) != null) {//si existe el producto
+                                //LeerValidarCantidad*
+                                cantidad = Validaciones.LeerValidarCantidad();
+                                //AñadirProductoXCodigo*
+                                gm.addProduct(codigo, codigoPedido, cantidad, orderLines, products);
+                            }else {//sino
+                                //MostrarMensajeExplicatorio1
+                                System.out.println("El producto no existe");
+                            }//fin_si
                             break;
                         case 2://opcion 2
-                            //añadir productos por nombre
-                            System.out.println("En construccion");
+                            //añadirProductosPorNombre
+                            //LeerNombre*
+                            nombreProd = Validaciones.LeerNombre();
+                            if(gm.buscarProducto(nombreProd, products) != null) {//si existe el producto
+                                //LeerValidarCantidad*
+                                cantidad = Validaciones.LeerValidarCantidad();
+                                //AñadirProductoPorNombre*
+                                gm.addProduct(nombreProd, codigoPedido, cantidad, orderLines, products);
+                            }else {//sino
+                                //MostrarMensajeExplicatorio1
+                                System.out.println("El producto no existe");
+                            }//fin_si
                             break;
                         case 3://opcion 3
                             //listaProductos
-                            System.out.println("En construccion");
+                            gm.mostrarListaProductos(products);
                             break;
                         case 4://opcion 4
                             //productoMasBarato
@@ -101,9 +160,6 @@ public class SuperMarketMain {
                         case 8://opcion 8
                             //productoMenosVendido
                             System.out.println(supermercado.getWorstSellingProduct());
-                            break;
-                        case 9://opcion 9
-                            //TerminarPedido
                             break;
                     }//fin_segun
                 }while(Validaciones.cambiarUsuario() == 'N');//mientras no cambie de usuario

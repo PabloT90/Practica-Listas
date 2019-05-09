@@ -1,6 +1,5 @@
 package main.java.util;
 
-import main.java.model.Order;
 import main.java.model.OrderLine;
 import main.java.model.Product;
 

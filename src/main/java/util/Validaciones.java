@@ -56,4 +56,38 @@ public class Validaciones {
 
         return cambiar;
     }
+
+    public static int LeerValidarCodigo(){
+        Scanner teclado = new Scanner(System.in);
+        int codigo;
+
+        do{
+            System.out.println("Dime el codigo.");
+            codigo = teclado.nextInt();
+        }while(codigo < 0);
+
+        return codigo;
+    }
+
+    public static String LeerNombre(){
+        Scanner teclado = new Scanner(System.in);
+        String nombre;
+
+        System.out.println("Escribe el nombre del producto.");
+        nombre = teclado.nextLine();
+
+        return nombre;
+    }
+
+    public static int LeerValidarCantidad(){
+        Scanner teclado = new Scanner(System.in);
+        int cantidad;
+
+        do{
+            System.out.println("Escribe la cantidad");
+            cantidad = teclado.nextInt();
+        }while(cantidad < 0);
+
+        return cantidad;
+    }
 }
