@@ -2,6 +2,7 @@ package main.java.util;
 
 import main.java.model.OrderLine;
 import main.java.model.Product;
+import main.java.model.Supermarket;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class GestoraMain {
     public Product buscarProducto(int codigo, List<Product> productos){
         Product product = null;
 
+        System.out.println("Tamaño"+productos.size());
         for(int i = 0; i < productos.size() && product == null; i++){
             if(productos.get(i).getCode() == codigo){
                 product = productos.get(i);
@@ -125,5 +127,22 @@ public class GestoraMain {
         for(int i = 0; i < productos.size(); i++){
             System.out.println(productos.get(i));
         }
+    }
+
+    /*
+    * Esta funcion añade unos productos predefinidos a la lista de productos.
+    * Postcondiciones: Se añaden los productos a la lista de productos del supermercado.
+    * Cabecera: public void generarProductos(Supermarket s1)
+    * */
+    public void generarProductos(Supermarket s1){
+        Product p1 = new Product(CodeUtils.getProductCode(), "Champú 5L Familiar", 25.00, s1);
+        Product p2 = new Product(CodeUtils.getProductCode(), "Cerveza Alhambra 1925", 1.00, s1);
+        Product p3 = new Product(CodeUtils.getProductCode(), "Aceitunas chupadeos", 1.0, s1);
+        Product p4 = new Product(CodeUtils.getProductCode(), "Pizza 4 quesos", 1.0, s1);
+
+        s1.addProduct(p1);
+        s1.addProduct(p2);
+        s1.addProduct(p3);
+        s1.addProduct(p4);
     }
 }
