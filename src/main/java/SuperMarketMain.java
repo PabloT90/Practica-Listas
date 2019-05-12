@@ -66,6 +66,7 @@ Descripcion: este programa simula el funcionamiento de una cadena de supermercad
 *                           productoMenosVendido*
 *                   fin_segun
 *               mientras opcion != 9
+                MostrarListaPedidos*
 *           mientras no cambie de usuario
             leerValidarEjecutar*
         fin_mientras
@@ -174,16 +175,18 @@ public class SuperMarketMain {
                                 break;
                             case 7://opcion 7
                                 //productoMasVendido*
-                                System.out.println("En construccion");
-                                System.out.println(supermercado.getBestSellingProduct());
+                                System.out.println("Hay que retocarla.");
+                                System.out.println(supermercado.getBestSellingProduct(orderLines));
                                 break;
                             case 8://opcion 8
                                 //productoMenosVendido*
-                                System.out.println("En construccion");
-                                System.out.println(supermercado.getWorstSellingProduct());
+                                System.out.println("Hay que retocarla.");
+                                System.out.println(supermercado.getWorstSellingProduct(orderLines));
                                 break;
                         }//fin_segun
                     } while (opcion != 9);// mientras opcion != 9
+                    //MostrarListaPedidos*
+                    gm.mostrarListaPedidos(orderLines);
                 } while ((cambio = Validaciones.cambiarUsuario()) == 'N');//mientras no cambie de usuario
                 //LeerValidarEjecutar*
                 ejecutar = Validaciones.leerValidarEjecutar();

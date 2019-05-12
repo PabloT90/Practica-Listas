@@ -217,7 +217,7 @@ public class Order {
 	/*
 	* Nos permite calcular el precio total del pedido.
 	* Precondiciones: el pedido no puede estar vacío.
-	* Salida: precioTotal double.
+	* Salida: precioTotal Double.
 	* Postcondiciones: Asociado al nombre se manda el precio total del pedido.
 	* */
 	public Double getTotalPrice() {

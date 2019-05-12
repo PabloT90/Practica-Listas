@@ -259,8 +259,6 @@ public class Supermarket {
 	* precio más bajo de la lista de productos, si existe más de un producto
 	* con el mismo precio la función devuelve el primero encontrado.
 	* Cabecera: public Product getMinPriceProduct()
-	* Entrada:
-	* 	-Product producto
 	* Postcondiciones: La función devuelve un tipo Product asociado al
 	* nombre, que es el producto con el precio más bajo de la lista de
 	* productos o null si la lista se encuentra vacía.
@@ -363,75 +361,67 @@ public class Supermarket {
 	* Interfaz
 	* Nombre: getBestSellingProduct
 	* Comentario: Esta función nos permite obtener el producto más vendido junto a sus ventas.
+	* Entrada: List<OderLine> pedidos.
 	* Salida: String masVendido
 	* Postcondiciones: Asociado al nombre se manda un String que contiene el producto mas vendido y su numero de ventas.
 	* Si varios productos tienen el mismo numero de ventas se mostrará el último obtenido.
-	* Cabecera: public String getBestSellingProduct()
+	* Cabecera: public String getBestSellingProduct(List<OrderLine> pedidos)
 	* */
-	public String getBestSellingProduct() {
-		String menosVendido = " ";
+	public String getBestSellingProduct(List<OrderLine> pedidos) {
+		String masVendido = " ";
 		int ventas = 0;
-		int max = 0;
+		int max = pedidos.get(0).getProduct().getCode();
 
-		if(!orders.isEmpty()){
-			for(int i = 0; i < orders.size(); i++){
-
-				//Obtengo las ventas de cada producto.
-				max = numeroVendido(orders.get(i).getOrderLine(i).getProduct().getCode());
-				ventas = numeroVendido(orders.get(max).getOrderLine(max).getProduct().getCode());
-
-				if(max >= ventas){
-					max = orders.get(i).getOrderLine(i).getProduct().getCode();
+		if(!pedidos.isEmpty()){
+			for(int i = 1; i < pedidos.size(); i++){
+				if(numeroVendido(pedidos.get(max).getProduct().getCode(), pedidos) < (numeroVendido(pedidos.get(i).getProduct().getCode(), pedidos))){
+					max = pedidos.get(i).getProduct().getCode();
 				}
 			}
-			menosVendido = "El mas vendido ha sido el: "+ max + " Numero ventas: " + ventas;
+			masVendido = "El mas vendido ha sido el: "+ max + " Numero ventas: " + ventas + "\n ------------------------------------------";
 		}
-		return menosVendido;
+		return masVendido;
 	}
 
 	/*
 	 * Interfaz
 	 * Nombre: getWorstSellingProduct
 	 * Comentario: Esta función nos permite obtener el producto menos vendido junto con sus ventas.
+	 * Entrada: List<OrderLine> pedidos
 	 * Salida: String menosVendido
 	 * Postcondiciones: Asociado al nombre se manda un String que contiene el producto menos vendido y su numero de ventas.
 	 * Si varios productos tienen el mismo numero de ventas se mostrará el último obtenido.
-	 * Cabecera: public String getWorstSellingProduct()
+	 * Cabecera: public String getWorstSellingProduct(List<OrderLine> pedidos)
 	 * */
-	public String getWorstSellingProduct() {
+	public String getWorstSellingProduct(List<OrderLine> pedidos) {
 		String menosVendido = " ";
 		int ventas = 0;
-		int minimo = 0;
+		int minimo = pedidos.get(0).getProduct().getCode();
 
-		if(!orders.isEmpty()){
-			for(int i = 0; i < orders.size(); i++){
-
-				//Obtengo las ventas de cada producto.
-				minimo = numeroVendido(orders.get(i).getOrderLine(i).getProduct().getCode());
-				ventas = numeroVendido(orders.get(minimo).getOrderLine(minimo).getProduct().getCode());
-
-				if(minimo <= ventas){
-					minimo = orders.get(i).getOrderLine(i).getProduct().getCode();
+		if(!pedidos.isEmpty()){
+			for(int i = 1; i < pedidos.size(); i++){
+				if((ventas = numeroVendido(pedidos.get(minimo).getProduct().getCode(), pedidos)) > (numeroVendido(pedidos.get(i).getProduct().getCode(), pedidos))){
+					minimo = pedidos.get(i).getProduct().getCode();
 				}
 			}
-			menosVendido = "El menos vendido ha sido el: "+ minimo + " Numero ventas: " + ventas;
+			menosVendido = "El menos vendido ha sido el: "+ minimo + " Numero ventas: " + ventas + "\n ------------------------------------------";
 		}
 		return menosVendido;
 	}
 
 	/*
-	* Entrada: int numProducto
+	* Entrada: int numProducto, List<OrderLine> pedidos
 	* Precondiciones: List<Order> no puede estar vacia.
 	* Salida: int ventas.
 	* Postcondiciones: asociado al nombre se manda el numero de ventas que ha tenido un producto.
-	* Cabecera: public int numeroVendido(int numProducto).
+	* Cabecera: public int numeroVendido(int numProducto, List<OrderLine> pedidos).
 	* */
-	public int numeroVendido(int numProducto){
+	public int numeroVendido(int numProducto, List<OrderLine> pedidos){
 		int ventas = 0;
 		//Ventas del producto recibido como parametro.
-		for(int i = 0; i < orders.size(); i++){
-			if(orders.get(i).getOrderLine(i).getProduct().getCode() == numProducto){
-				ventas = ventas + orders.get(i).getOrderLine(i).getQuantity();
+		for(int i = 0; i < pedidos.size(); i++){
+			if(pedidos.get(i).getProduct().getCode() == numProducto){
+				ventas = ventas + pedidos.get(i).getQuantity();
 			}
 		}
 

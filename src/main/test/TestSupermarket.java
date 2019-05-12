@@ -8,6 +8,8 @@ import main.java.util.Articulo;
 import main.java.util.CodeUtils;
 import main.java.util.ListaArticulos;
 
+import java.util.List;
+
 public class TestSupermarket {
     public static void main(String[] args) {
         Supermarket s1 = new Supermarket("Supermercado Nervión", CodeUtils.getSupermarketCode());
@@ -92,10 +94,11 @@ public class TestSupermarket {
         System.out.println(s1.getPriceByCode(1));
         System.out.println("--Fin getPriceByCode()--");
 
-        System.out.println(s1.getBestSellingProduct());
+        List<OrderLine> lista = null;
+        //System.out.println(s1.getBestSellingProduct(lista);
         System.out.println("--Fin getBestSellingProduct()--");
 
-        System.out.println(s1.getWorstSellingProduct());
+        //System.out.println(s1.getWorstSellingProduct(lista));
         System.out.println("--Fin getBestSellingProduct()--");
 
     }
