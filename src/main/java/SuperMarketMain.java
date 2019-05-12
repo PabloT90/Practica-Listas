@@ -175,12 +175,10 @@ public class SuperMarketMain {
                                 break;
                             case 7://opcion 7
                                 //productoMasVendido*
-                                System.out.println("Hay que retocarla.");
                                 System.out.println(supermercado.getBestSellingProduct(orderLines));
                                 break;
                             case 8://opcion 8
                                 //productoMenosVendido*
-                                System.out.println("Hay que retocarla.");
                                 System.out.println(supermercado.getWorstSellingProduct(orderLines));
                                 break;
                         }//fin_segun

@@ -369,15 +369,21 @@ public class Supermarket {
 	* */
 	public String getBestSellingProduct(List<OrderLine> pedidos) {
 		String masVendido = " ";
-		int ventas = 0;
-		int max = pedidos.get(0).getProduct().getCode();
+		int ventas;
+		int max = 0;
+		int aux = 0;
 
 		if(!pedidos.isEmpty()){
 			for(int i = 1; i < pedidos.size(); i++){
-				if(numeroVendido(pedidos.get(max).getProduct().getCode(), pedidos) < (numeroVendido(pedidos.get(i).getProduct().getCode(), pedidos))){
+				if(numeroVendido(pedidos.get(max).getProduct().getCode(), pedidos) < numeroVendido(pedidos.get(i).getProduct().getCode(), pedidos)){
 					max = pedidos.get(i).getProduct().getCode();
+					aux = i;
 				}
 			}
+			if(max == 0){
+				max=1; //Solucion cuando el mas vendido es el primero de la lista
+			}
+			ventas = numeroVendido(pedidos.get(aux).getProduct().getCode(), pedidos);
 			masVendido = "El mas vendido ha sido el: "+ max + " Numero ventas: " + ventas + "\n ------------------------------------------";
 		}
 		return masVendido;
@@ -395,15 +401,21 @@ public class Supermarket {
 	 * */
 	public String getWorstSellingProduct(List<OrderLine> pedidos) {
 		String menosVendido = " ";
-		int ventas = 0;
-		int minimo = pedidos.get(0).getProduct().getCode();
+		int ventas;
+		int minimo = 0;
+		int aux = 0;
 
 		if(!pedidos.isEmpty()){
 			for(int i = 1; i < pedidos.size(); i++){
-				if((ventas = numeroVendido(pedidos.get(minimo).getProduct().getCode(), pedidos)) > (numeroVendido(pedidos.get(i).getProduct().getCode(), pedidos))){
+				if(numeroVendido(pedidos.get(minimo).getProduct().getCode(), pedidos) > numeroVendido(pedidos.get(i).getProduct().getCode(), pedidos)){
 					minimo = pedidos.get(i).getProduct().getCode();
+					aux = i;
 				}
 			}
+			if(minimo == 0){ //Solucion para cuando el menos vendido es el primero de la lista.
+				minimo = 1;
+			}
+			ventas = numeroVendido(pedidos.get(aux).getProduct().getCode(), pedidos);
 			menosVendido = "El menos vendido ha sido el: "+ minimo + " Numero ventas: " + ventas + "\n ------------------------------------------";
 		}
 		return menosVendido;
