@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class CodeUtils {
-	//private static final String fileName = "./src/resources/counter.txt";
-	private static final String fileName = "Practica-Listas\\src\\resources\\counter.txt";
+	private static final String fileName = "./src/resources/counter.txt";
+	//private static final String fileName = "Practica-Listas\\src\\resources\\counter.txt";
 
 	public static Integer getSupermarketCode() {
 		Path directory = Paths.get(fileName);

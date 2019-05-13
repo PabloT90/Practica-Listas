@@ -423,7 +423,6 @@ public class Supermarket {
 
 	/*
 	* Entrada: int numProducto, List<OrderLine> pedidos
-	* Precondiciones: List<Order> no puede estar vacia.
 	* Salida: int ventas.
 	* Postcondiciones: asociado al nombre se manda el numero de ventas que ha tenido un producto.
 	* Cabecera: public int numeroVendido(int numProducto, List<OrderLine> pedidos).
@@ -436,7 +435,6 @@ public class Supermarket {
 				ventas = ventas + pedidos.get(i).getQuantity();
 			}
 		}
-
 		return ventas;
 	}
 }
